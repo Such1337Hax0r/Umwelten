@@ -29,13 +29,23 @@ public class ClientHandler extends Thread {
 			// the stack trace
 			System.out.println("You had one job!");
 			System.out.println("And you couldn't even do it!");
-			System.out.println("(In other words you broke it)");
+			System.out.println("(IOException)");
 			e.printStackTrace();
 		}
 		int[] oldData = null;
 		while (!CurrentlyHandling.isClosed()) {
 			In = readData(R);
 			oldData = sendData(Out, oldData, W);
+			if(T.Pain >= 100) {
+				T.x = 51;
+				T.y = 125;
+			}
+			try{
+			Thread.sleep(10);
+			} catch (InterruptedException e) {
+				System.err.println("InterruptedException");
+				e.printStackTrace();
+			}
 		}
 		// Remove the current handler from the list
 		Main.AL.remove(this);

@@ -1,22 +1,24 @@
 package server;
 
 public class Thing {
-	private int identifier;
-	private boolean blocksPath;
-	private boolean emitsLight;
-	private boolean reflectsLight;
-	private boolean emitsPressure;
-	private int purpleness;
-	private boolean emitsHeat;
-	private boolean isBreathable;
-	private boolean gasPhysics;
-	private boolean isToxic;
-	private boolean isLiquid;
+	int identifier;
+	boolean blocksPath;
+	boolean emitsLight;
+	boolean reflectsLight;
+	boolean emitsPressure;
+	int purpleness;
+	boolean emitsHeat;
+	boolean isBreathable;
+	boolean gasPhysics;
+	boolean isToxic;
+	boolean isLiquid;
+	boolean isEdible;
 	int x;
 	int y;
+	int Pain;
 
 	public Thing(int I, boolean B, boolean eL, boolean rL, boolean eP, int P, boolean eH, boolean iB, boolean gP,
-			boolean iT, boolean iL, int X, int Y) {
+			boolean iT, boolean iL, boolean iE, int X, int Y) {
 		this.identifier = I;
 		this.blocksPath = B;
 		this.emitsLight = eL;
@@ -28,6 +30,7 @@ public class Thing {
 		this.gasPhysics = gP;
 		this.isToxic = iT;
 		this.isLiquid = iL;
+		this.isEdible = iE;
 		this.x = X;
 		this.y = Y;
 	}
