@@ -11,7 +11,7 @@ public class ClientHandler extends Thread {
 
 	public ClientHandler(Socket a) {
 		this.CurrentlyHandling = a;
-		
+
 	}
 
 	public void run() {
@@ -36,12 +36,12 @@ public class ClientHandler extends Thread {
 		while (!CurrentlyHandling.isClosed()) {
 			In = readData(R);
 			oldData = sendData(Out, oldData, W);
-			if(T.Pain >= 100) {
+			if (T.Pain >= 100) {
 				T.x = 51;
 				T.y = 125;
 			}
-			try{
-			Thread.sleep(10);
+			try {
+				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				System.err.println("InterruptedException");
 				e.printStackTrace();
