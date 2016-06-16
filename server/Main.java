@@ -236,7 +236,7 @@ public class Main {
 						}
 						break;
 					case (406):
-						break;
+						mashHeadAgainstRock(j.T, b[1]);
 					case (407):
 						break;
 					case (408):
@@ -264,5 +264,15 @@ public class Main {
 			k++;
 		}
 		return null;
+	}
+	//Mashes head against rock. If there is a rock nearby, p.pain will increment by hardness and returns true. Otherwise, returns false.
+	public static boolean mashHeadAgainstRock (Player p, int hardness) {
+		int x = p.x;
+		int y = p.y;
+		if(T[x][y+1]==203 || T[x][y-1]==203 || T[x+1][y]==203 || T[x-1][y]==203) {
+			p.pain += hardness;
+			return true;
+		}
+		return false;
 	}
 }
