@@ -7,7 +7,7 @@ public class ClientHandler extends Thread {
 	Socket CurrentlyHandling;
 	private int[] In = new int[10000];
 	private int[] Out;
-	Player T;
+	Player T = new Player("NONEXIST", 51, 125);
 
 	public ClientHandler(Socket a) {
 		this.CurrentlyHandling = a;
@@ -36,9 +36,13 @@ public class ClientHandler extends Thread {
 		while (!CurrentlyHandling.isClosed()) {
 			In = readData(R);
 			oldData = sendData(Out, oldData, W);
-			if (T.Pain >= 100) {
-				T.x = 51;
-				T.y = 125;
+			try {
+				if (T.Pain >= 100) {
+					T.x = 51;
+					T.y = 125;
+				}
+			} catch (NullPointerException e) {
+				System.out.println("Nonexistant client");
 			}
 			try {
 				Thread.sleep(10);
@@ -80,6 +84,11 @@ public class ClientHandler extends Thread {
 	// For reading data, returns the data as a Byte array
 	private int[] readData(BufferedInputStream I) {
 		int Available = 0;
+		try {
+			Available = I.available();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		int[] returning = new int[Available];
 		try {
 			Available = I.available();
