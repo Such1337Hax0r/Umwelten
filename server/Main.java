@@ -18,6 +18,8 @@ public class Main {
  *  because such1337hax0r's grid system of having a 3d game with a 2d array is really 
  *  annoying but he doesn't want to go into such1337hax0r's sphagetti code and change it.
  *  If you change it bobmonkeywarts will be forever in debt to you.
+ *  
+ *  Note: The random Strings in the System.out.printlns are for debugging, that's why it's constantly printing YOUTUBE YOUTUBE YOUTUBE YOUTUBE.
  */
 	public static void main(String Args[]) throws IOException {
 		if (!(Args.length < 1)) {
@@ -82,6 +84,8 @@ public class Main {
 					currentCode = b[0];
 					switch (currentCode) {
 					case (101):
+						/*
+						Old vision code, with fog:
 						I.add((T[j.T.x + 1][j.T.y]).identifier);
 						I.add((T[j.T.x - 1][j.T.y]).identifier);
 						I.add((T[j.T.x][j.T.y - 250]).identifier);
@@ -89,6 +93,12 @@ public class Main {
 						I.add((T[j.T.x][j.T.y - 1]).identifier);
 						I.add((T[j.T.x][j.T.y + 1]).identifier);
 						System.out.println("101");
+						*/
+						//New vision code written by bobmonkeywarts:
+						int[] vision = vision(j.T);
+						for(int i = 0; i < vision.length; i ++) {
+							I.add(vision[i]);
+						}
 						break;
 					case (102):
 						int heatArea = 0;
@@ -270,6 +280,7 @@ public class Main {
 						boolean mashed = mashHeadAgainstRock(j.T, b[1]);
 						toSend = mashed?1:-1;
 						System.out.println(406);
+						break;
 					case (407):
 						break;
 					case (408):
