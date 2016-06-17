@@ -7,13 +7,20 @@ public class ClientHandler extends Thread {
 	Socket CurrentlyHandling;
 	private int[] In = new int[10000];
 	private int[] Out;
-	Player T = new Player("NONEXIST", 51, 125);
+	Player T;
 
 	public ClientHandler(Socket a) {
 		this.CurrentlyHandling = a;
-
+		
 	}
-
+	public void setPlayer(Thing[][][] map, String User) {
+		for(int x = 0; x < map.length; x ++) {
+			for(int z = 0; z < map.length; z ++) {
+				if(map[z][x][y].identifier == 205) T = new Player(User, x, 50, z);
+			}
+		}
+		
+	}
 	public void run() {
 		// If handler exists add it to the list
 		if (CurrentlyHandling != null)

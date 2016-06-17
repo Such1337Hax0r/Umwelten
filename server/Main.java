@@ -62,7 +62,7 @@ public class Main {
 				System.out.println("YOUTUBE");
 				String J = new String("" + c1 + c2 + c3 + c4);
 				System.out.println("YOUTUBE");
-				c.T = new Player(J, 51, 125);
+				c.setPlayer(T, J);
 				if (S.next().equals("quit")) {
 					s.close();
 					S.close();
@@ -365,8 +365,7 @@ public class Main {
 		}
 		return -1;
 	}
-	//Generates a 250x500x250 map.(500 is Y) NOT FINISHED, DO NOT UNCOMMENT UNTIL IT'S DONE
-	/*
+	//Generates a 250x500x250 map.(500 is Y) NOT FINISHED
 	public static int[][][] generateMap() {
 		int fakeX;
 		int fakeY;
@@ -375,8 +374,7 @@ public class Main {
 			for(int y = 0; y<50; y ++) {
 				for(int z = 0; z<zLength; z++) {
 					fakeX = xyztoxy(x, y, z)[0];
-					fakeY = xyztoxy(x, y, z)[1];
-					T[fakeX][fakeY] = new Stone(fakeX, fakeY);
+					T[fakeX][y] = new Stone(fakeX, fakeY);
 				}
 			}
 		}
@@ -385,8 +383,7 @@ public class Main {
 			for(int y = 0; y<3; y ++) {
 				for(int z = 0; z<zLength; z++) {
 					fakeX = xyztoxy(x, y, z)[0];
-					fakeY = xyztoxy(x, y, z)[1];
-					T[fakeX][fakeY] = new Dirt(fakeX, fakeY);
+					T[fakeX][y] = new Dirt(fakeX, fakeY);
 				}
 			}
 		}
@@ -400,11 +397,8 @@ public class Main {
 		}
 		
 	}
-	*/
-	//to be implemented by Such1337Hax0r because it's HIS FAULT that the xyz system is weird.
-	//Returns an int[] with the "fake" x and y in such1337hax0r's grid system.
-	public static int[] xyztoxy(int x, int y, int z) { return {}; /*placeholder*/}
-	}
+	
+	
 	//Returns true if p is touching something toxic.
 	public static boolean isInDanger(Player p) {
 		ArraList<Thing> touching = new ArrayList<Thing>;
@@ -419,4 +413,5 @@ public class Main {
 		}
 		return false;
 	}
+	
 }
