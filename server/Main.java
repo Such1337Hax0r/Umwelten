@@ -8,7 +8,17 @@ public class Main {
 	public static ArrayList<ClientHandler> AL = new ArrayList<ClientHandler>();
 	static Thing[][] T = new Thing[500][500];
 	static ArrayList<String> Str = new ArrayList<String>();
-
+/*
+ * OFFICIAL DIRECTION CODE:
+ *    0                    N
+ *  3 P 1   Compass rose:W   E 
+ *    2                    S
+ *  (P = player)
+ *  Up is 4, down is 5, but bobmonkeywarts thinks this should mostly be a 2D game
+ *  because such1337hax0r's grid system of having a 3d game with a 2d array is really 
+ *  annoying but he doesn't want to go into such1337hax0r's sphagetti code and change it.
+ *  If you change it bobmonkeywarts will be forever in debt to you.
+ */
 	public static void main(String Args[]) throws IOException {
 		if (!(Args.length < 1)) {
 			System.out.println("Welcome to Umwelten sever, Enter quit to quit");
@@ -257,7 +267,9 @@ public class Main {
 						System.out.println(405);
 						break;
 					case (406):
-						mashHeadAgainstRock(j.T, b[1]);
+						boolean mashed = mashHeadAgainstRock(j.T, b[1]);
+						toSend = mashed?1:-1;
+						System.out.println(406);
 					case (407):
 						break;
 					case (408):
@@ -300,5 +312,45 @@ public class Main {
 			return true;
 		}
 		return false;
+	}
+	//Returns an int[] of what you're seeing. pos 0 = north, 1 = east, etc.
+	public static int[] vision(Player p) {
+		int[] toReturn = new int[4];
+		for(int i = 0; i < 4; i ++) {
+			toReturn[i] = seeInDirection(p.x, p.y, i);
+		}
+	}
+	//Helper method for vision(Player), don't use this. Direction code stays the same.
+	//Precondition: direction is an int 0-4.
+	public static int seeInDirection(x, y, int direction) {
+		if(direction == 0) {
+			if(y==T[x].length-1) return 205;
+				if(T[x][y+1] == 205) {
+				return seeInDirection(x, y+1, direction);
+			}
+			return T[x][y+1];
+		}
+		if(direction == 1) {
+			if(x==T.length-1) return 205;
+			if(T[x+1][y] == 205) {
+				return seeInDirection(x+1, y, direction);
+			}
+			return T[x+1][y];
+		}
+		if(direction == 2) {
+			if(y==0) return 205;
+			if(T[x][y-1] == 205) {
+				return seeInDirection(x, y-1, direction);
+			}
+			return T[x][y-1];
+		}
+		if(direction == 3) {
+			if(x==0) return 205;
+			if(T[x-1][y] == 205) {
+				return seeInDirection(x-1, y, direction);
+			}
+			return T[x][y-1];
+		}
+		return -1;
 	}
 }
