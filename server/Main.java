@@ -213,6 +213,7 @@ public class Main {
 							(T[j.T.x][j.T.y]) = new Air(j.T.x, j.T.y);
 							j.T.y++;
 						}
+						if(isInDanger(j.T)) j.T.pain += 10;
 						System.out.println("401");
 						break;
 					case (402):
@@ -318,7 +319,7 @@ public class Main {
 	public static boolean mashHeadAgainstRock (Player p, int hardness) {
 		int x = p.x;
 		int y = p.y;
-		if(T[x][y+1]==203 || T[x][y-1]==203 || T[x+1][y]==203 || T[x-1][y]==203) {
+		if(T[x][y+1].identifier==203 || T[x][y-1].identifier==203 || T[x+1][y].identifier==203 || T[x-1][y].identifier==203) {
 			p.pain += hardness;
 			return true;
 		}
@@ -363,5 +364,59 @@ public class Main {
 			return T[x][y-1];
 		}
 		return -1;
+	}
+	//Generates a 250x500x250 map.(500 is Y) NOT FINISHED, DO NOT UNCOMMENT UNTIL IT'S DONE
+	/*
+	public static int[][][] generateMap() {
+		int fakeX;
+		int fakeY;
+		//50 layers of stone on the bottom:
+		for(int x = 0; x < xLength; x ++) {
+			for(int y = 0; y<50; y ++) {
+				for(int z = 0; z<zLength; z++) {
+					fakeX = xyztoxy(x, y, z)[0];
+					fakeY = xyztoxy(x, y, z)[1];
+					T[fakeX][fakeY] = new Stone(fakeX, fakeY);
+				}
+			}
+		}
+		//3 layers of dirt on top of that stone:
+		for(int x = 0; x < xLength; x ++) {
+			for(int y = 0; y<3; y ++) {
+				for(int z = 0; z<zLength; z++) {
+					fakeX = xyztoxy(x, y, z)[0];
+					fakeY = xyztoxy(x, y, z)[1];
+					T[fakeX][fakeY] = new Dirt(fakeX, fakeY);
+				}
+			}
+		}
+		//Lays out trees:
+		for(int x = 0; x < 250; i ++) {
+			for(int z = 0; z < 250; z ++) {
+				boolean toPlant = Math.random()<0.2;
+				fakeZ = 
+				if(toPlant) T[]
+			}
+		}
+		
+	}
+	*/
+	//to be implemented by Such1337Hax0r because it's HIS FAULT that the xyz system is weird.
+	//Returns an int[] with the "fake" x and y in such1337hax0r's grid system.
+	public static int[] xyztoxy(int x, int y, int z) { return {}; /*placeholder*/}
+	}
+	//Returns true if p is touching something toxic.
+	public static boolean isInDanger(Player p) {
+		ArraList<Thing> touching = new ArrayList<Thing>;
+		touching.add((T[j.T.x + 1][j.T.y]));
+		touching.add((T[j.T.x - 1][j.T.y]));
+		touching.add((T[j.T.x][j.T.y - 250]));
+		touching.add((T[j.T.x][j.T.y + 250]));
+		touching.add((T[j.T.x][j.T.y - 1]));
+		touching.add((T[j.T.x][j.T.y + 1]));
+		for(int i = 0; i < touching.size(); i ++) {
+			if(touching.get(i).isToxic) return true;
+		}
+		return false;
 	}
 }
